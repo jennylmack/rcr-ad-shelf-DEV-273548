@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cover Page — RCR Ad Shelf | DEV-273548</title>
+  <style>
+    :root {
+      --navy: #1a2744;
+      --teal: #00b4d8;
+      --green: #06d6a0;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-800);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    /* Header */
+    .page-header {
+      background: var(--navy);
+      color: white;
+      padding: 36px 48px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(0,180,216,0.2);
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(0,180,216,0.3);
+      margin-bottom: 14px;
+    }
+    .page-header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+    .page-header .subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 24px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .meta-item { }
+    .meta-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 3px;
+    }
+    .meta-value {
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+    .meta-value a { color: var(--teal); text-decoration: none; }
+    /* Layout */
+    .content { max-width: 900px; margin: 0 auto; padding: 36px 24px; }
+    /* Sections */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-num {
+      background: var(--navy);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-800);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .section-body { padding: 20px; }
+    /* Table */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th {
+      background: var(--gray-50);
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--gray-600);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--gray-100);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    /* Code */
+    code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      background: var(--gray-100);
+      padding: 1px 5px;
+      border-radius: 4px;
+      color: #0369a1;
+    }
+    pre {
+      background: var(--gray-800);
+      color: #e2e8f0;
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      overflow-x: auto;
+      margin-top: 8px;
+    }
+    /* Lists */
+    ul, ol { padding-left: 20px; }
+    li { margin-bottom: 5px; }
+    /* Chips */
+    .chip {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .chip-pass { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+    .chip-warn { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+    .chip-fail { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .chip-na { background: var(--gray-100); color: var(--gray-600); border: 1px solid var(--gray-200); }
+    /* Resources */
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 0;
+    }
+    .resource-link:hover { text-decoration: underline; }
+    .resource-grid { display: flex; flex-direction: column; gap: 6px; }
+    /* Loom placeholder */
+    .loom-placeholder {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 2px dashed #334155;
+      border-radius: 10px;
+      padding: 28px;
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+    .loom-placeholder strong {
+      display: block;
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .loom-placeholder code {
+      background: #0f172a;
+      color: var(--teal);
+      font-size: 12px;
+    }
+    /* Flow steps */
+    .flow-step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: var(--teal);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-text { font-size: 13px; }
+    .step-sub { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+    /* Alert block */
+    .alert {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 4px solid var(--amber);
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #92400e;
+      margin-bottom: 12px;
+    }
+    /* Scope grid */
+    .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .scope-box { background: var(--gray-50); border-radius: 8px; padding: 14px; }
+    .scope-box.in { border-left: 3px solid var(--green); }
+    .scope-box.out { border-left: 3px solid var(--red); }
+    .scope-box-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 8px; }
+    .scope-box.in .scope-box-title { color: #16a34a; }
+    .scope-box.out .scope-box-title { color: var(--red); }
+    .scope-box li { font-size: 12px; margin-bottom: 4px; }
+    /* Footer */
+    .page-footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 11px;
+      color: var(--gray-400);
+      border-top: 1px solid var(--gray-200);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="badge">PROTOTYPE COVER PAGE</div>
+  <h1>WebFlow iFrame Integration & Feature Flagging</h1>
+  <div class="subtitle">Rent Credit Reporting Ad Shelves — Homebody RXP</div>
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="meta-label">Autonomy Level</div>
+      <div class="meta-value">Full Implementation Spec</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Product Area</div>
+      <div class="meta-value">App Shelving / Homebody RXP</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Submitted By</div>
+      <div class="meta-value">Jenny Mack</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Epic (Jira)</div>
+      <div class="meta-value"><a href="https://entrata.atlassian.net/browse/DEV-273548" target="_blank">DEV-273548 ↗</a></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Initiative (Jira)</div>
+      <div class="meta-value"><a href="https://entrata.atlassian.net/browse/DEV-273545" target="_blank">DEV-273545 ↗</a></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">BRD / Status</div>
+      <div class="meta-value">R2 — June 16, 2026 · Ready for Eng</div>
+    </div>
+  </div>
+  <a href="./prototype/" class="launch-btn" target="_blank" style="display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:14px 32px;background:linear-gradient(135deg,#00b4d8,#0096c7);color:#fff;font-size:16px;font-weight:700;border-radius:10px;text-decoration:none;box-shadow:0 4px 14px rgba(0,180,216,0.35);transition:transform 0.15s,box-shadow 0.15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(0,180,216,0.45)';" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 14px rgba(0,180,216,0.35)';">
+    ▶ Launch Interactive Prototype
+    <span style="font-size:12px;opacity:0.85;font-weight:400;">— RCR Ad Shelf with Feature Flags, Telemetry & Fail-Closed States</span>
+  </a>
+</div>
+
+<div class="content">
+
+  <!-- 1. Resources -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Resources</div>
+    </div>
+    <div class="section-body">
+      <div class="resource-grid">
+        <a class="resource-link" href="https://entrata.atlassian.net/browse/DEV-273548" target="_blank">📋 Jira Epic — DEV-273548</a>
+        <a class="resource-link" href="https://entrata.atlassian.net/browse/DEV-273545" target="_blank">📋 Jira Initiative — DEV-273545</a>
+        <a class="resource-link" href="./prototype/" target="_blank">🖥️ Prototype — live proof of concept</a>
+        <a class="resource-link" href="#" target="_blank">📐 SpecCatalyst — [Pending project setup]</a>
+      </div>
+      <div style="margin-top: 16px;">
+        <a class="resource-link" href="https://www.loom.com/share/75a13f1608974278b6792571edb13cb4" target="_blank">🎬 Video Walkthrough — Loom</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Workflows -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Key Workflows</div>
+    </div>
+    <div class="section-body">
+      <div style="margin-bottom: 20px;">
+        <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 10px;">Flow 1 — Enrolled resident sees ad shelf</strong>
+        <div class="flow-step"><div class="step-num">1</div><div class="step-text">Resident navigates to Rent Credit Reporting page in Homebody<div class="step-sub">All feature flags enabled. Resident is RCR-enrolled. Property on allowlist.</div></div></div>
+        <div class="flow-step"><div class="step-num">2</div><div class="step-text">Credit score ring and payment timeline load<div class="step-sub">Credit score 712 (+8 pts). 6-month on-time streak displayed.</div></div></div>
+        <div class="flow-step"><div class="step-num">3</div><div class="step-text">Ad shelf loads asynchronously below credit content<div class="step-sub">WebFlow iFrame points to Growth Marketing CMS. 3 contextual offers visible.</div></div></div>
+        <div class="flow-step"><div class="step-num">4</div><div class="step-text">Intersection Observer fires — <code>offer_shelf_impression</code> logged to Amplitude<div class="step-sub">surface=rcr, platform=homebody_rxp, enrollment_status=enrolled</div></div></div>
+        <div class="flow-step"><div class="step-num">5</div><div class="step-text">Resident taps "Get a quote →" on Lemonade offer<div class="step-sub"><code>offer_shelf_click</code> fires. iFrame modal opens (simulates WebFlow CMS content).</div></div></div>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 10px;">Flow 2 — Unenrolled resident (no shelf)</strong>
+        <div class="flow-step"><div class="step-num">1</div><div class="step-text">Toggle <code>rcr_enrolled</code> flag to OFF in the Flags panel</div></div>
+        <div class="flow-step"><div class="step-num">2</div><div class="step-text">RCR enrollment CTA appears. Ad shelf does not render.<div class="step-sub">Fail-closed. Zero footprint. Resident sees enrollment prompt instead.</div></div></div>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 10px;">Flow 3 — Kill switch activated</strong>
+        <div class="flow-step"><div class="step-num">1</div><div class="step-text">Toggle <code>hb_rcr_ad_shelf_enabled</code> to OFF in the Flags panel</div></div>
+        <div class="flow-step"><div class="step-num">2</div><div class="step-text">Shelf collapses to dashed outline with fail-closed message<div class="step-sub">No code deploy. Immediate. Other surfaces (Payment Confirmation) unaffected.</div></div></div>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 10px;">Flow 4 — Homebody Your Way exclusion</strong>
+        <div class="flow-step"><div class="step-num">1</div><div class="step-text">Toggle <code>homebody_your_way</code> to ON (excluded)</div></div>
+        <div class="flow-step"><div class="step-num">2</div><div class="step-text">Shelf does not render. Fail-closed message explains contractual exclusion.<div class="step-sub">Hard exclusion — enforced at platform level. Non-configurable.</div></div></div>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 10px;">Flow 5 — Shelf loading state</strong>
+        <div class="flow-step"><div class="step-num">1</div><div class="step-text">Shelf component mounts. <code>offer_shelf_load_started</code> fires.</div></div>
+        <div class="flow-step"><div class="step-num">2</div><div class="step-text">Skeleton placeholder (3 gray cards) renders while eligibility + CMS fetch complete.</div></div>
+        <div class="flow-step"><div class="step-num">3</div><div class="step-text">On success: skeleton replaced with offer cards. <code>offer_shelf_impression</code> fires when visible.</div></div>
+        <div class="flow-step"><div class="step-num">4</div><div class="step-text">On failure: skeleton replaced with zero-footprint collapse. <code>offer_shelf_load_failed</code> fires.</div></div>
+      </div>
+      <div>
+        <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 10px;">Flow 6 — Empty CMS state (no offers)</strong>
+        <div class="flow-step"><div class="step-num">1</div><div class="step-text">Resident is eligible. Feature flags pass. CMS returns <code>offers: []</code>.</div></div>
+        <div class="flow-step"><div class="step-num">2</div><div class="step-text">Shelf collapses to zero footprint. No error displayed to resident.</div></div>
+        <div class="flow-step"><div class="step-num">3</div><div class="step-text"><code>offer_shelf_load_failed</code> fires with <code>error_type: "cms_empty"</code>.</div></div>
+        <div class="flow-step"><div class="step-num">4</div><div class="step-text">Growth Marketing notified via New Relic alert (zero-offer surface).</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. AI / Automation -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">AI / Automation Opportunities</div>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li><strong>Automated offer relevance scoring:</strong> ML model scores which offer categories correlate with high RCR engagement (savings, credit tools, insurance) based on Amplitude impression + click signals.</li>
+        <li><strong>Enrollment nudge optimization:</strong> For unenrolled residents, AI-driven messaging variant selection could improve enrollment CTR.</li>
+        <li><strong>Anomaly detection:</strong> New Relic + ML to auto-flag shelf render degradation before manual thresholds trigger.</li>
+        <li><strong>Complaint prediction:</strong> Model to identify properties likely to generate complaints before escalation thresholds are hit — enabling proactive client exclusion.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4. User Stories -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">User Stories</div>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Role</th><th>Story</th><th>Done When</th></tr>
+        <tr>
+          <td>Enrolled resident</td>
+          <td>I see contextual financial offers below my credit score on the RCR page</td>
+          <td>Shelf renders with WebFlow iFrame content when eligible</td>
+        </tr>
+        <tr>
+          <td>Unenrolled resident</td>
+          <td>I see an enrollment CTA — no ads appear for me</td>
+          <td>Shelf does not render; enrollment prompt shown</td>
+        </tr>
+        <tr>
+          <td>Homebody Your Way resident</td>
+          <td>I never see ads on any page — my contract guarantees this</td>
+          <td>Hard exclusion enforced at platform level — zero shelf renders</td>
+        </tr>
+        <tr>
+          <td>Growth Marketing (DeAysia)</td>
+          <td>I can add, remove, or swap ads on the RCR page without filing an engineering ticket</td>
+          <td>Content updated in WebFlow CMS — live within minutes, no code deploy</td>
+        </tr>
+        <tr>
+          <td>CSM / AM (Andrea Alves)</td>
+          <td>I can stop ads for a specific client immediately when a complaint comes in</td>
+          <td>Per-client kill switch removes client_id from allowlist — immediate, no code deploy</td>
+        </tr>
+        <tr>
+          <td>Engineering</td>
+          <td>I can disable the RCR shelf independently without affecting other surfaces</td>
+          <td>Per-surface kill switch: hb_rcr_ad_shelf_enabled = OFF</td>
+        </tr>
+      </table>
+      <div style="margin-top: 18px;">
+        <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 10px;">Traceability Matrix</strong>
+        <table>
+          <tr><th>US</th><th>User Story</th><th>Acceptance Criteria</th><th>Test Cases</th></tr>
+          <tr><td>US-1</td><td>Enrolled resident sees contextual offers</td><td>AC-1, AC-8, AC-9</td><td>TC-001, TC-009, TC-010</td></tr>
+          <tr><td>US-2</td><td>Unenrolled resident sees enrollment CTA, no ads</td><td>AC-6</td><td>TC-007</td></tr>
+          <tr><td>US-3</td><td>Your Way resident never sees ads</td><td>AC-7</td><td>TC-008</td></tr>
+          <tr><td>US-4</td><td>Growth Marketing updates content without engineering</td><td>AC-10</td><td>TC-011</td></tr>
+          <tr><td>US-5</td><td>CSM/AM can stop ads for a client immediately</td><td>AC-11</td><td>TC-012</td></tr>
+          <tr><td>US-6</td><td>Engineering can disable RCR shelf independently</td><td>AC-3</td><td>TC-003</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. SDET / Test Scenarios -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">SDET / Test Scenarios</div>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>TC-ID</th><th>Scenario</th><th>Expected</th><th>AC Ref</th></tr>
+        <tr><td>TC-001</td><td>RCR-enrolled resident, feature flag ON, not Your Way</td><td>Shelf renders with WebFlow iFrame test offer</td><td>AC-1</td></tr>
+        <tr><td>TC-002</td><td>RCR-enrolled resident, feature flag ON, property-level allowlist</td><td>Only allowlisted properties see shelf</td><td>AC-2</td></tr>
+        <tr><td>TC-003</td><td>Global kill switch triggered (hb_ad_shelf_global_kill = OFF)</td><td>All shelves collapse — zero footprint — no code deploy</td><td>AC-3</td></tr>
+        <tr><td>TC-004</td><td>Amplitude: scroll shelf into view</td><td>offer_shelf_impression fires once (not on repeat scrolls)</td><td>AC-4</td></tr>
+        <tr><td>TC-005</td><td>Amplitude: resident taps offer CTA</td><td>offer_shelf_click fires with correct surface=rcr and offer_id</td><td>AC-4</td></tr>
+        <tr><td>TC-006</td><td>New Relic dashboard</td><td>RCR-specific metrics visible (render rate, latency, impression volume)</td><td>AC-5</td></tr>
+        <tr><td>TC-007</td><td>Non-RCR-enrolled resident visits page</td><td>Shelf does not render — fail-closed</td><td>AC-6</td></tr>
+        <tr><td>TC-008</td><td>Homebody Your Way client visits page</td><td>Shelf does not render — hard exclusion enforced</td><td>AC-7</td></tr>
+        <tr><td>TC-009</td><td>WebFlow CMS outage / iframe error</td><td>Shelf collapses — zero footprint — RCR flow continues unaffected</td><td>AC-8</td></tr>
+        <tr><td>TC-010</td><td>RCR flow completion before and after shelf launch</td><td>No measurable regression in flow completion rate</td><td>AC-9</td></tr>
+        <tr><td>TC-011</td><td>Growth Marketing updates CMS content</td><td>New offer visible within minutes — no engineering ticket required</td><td>AC-10</td></tr>
+        <tr><td>TC-012</td><td>Per-client kill switch: remove client_id from allowlist</td><td>That client sees no shelf immediately — other clients unaffected</td><td>AC-11</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 6. Amplitude Events -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Amplitude Events</div>
+    </div>
+    <div class="section-body">
+      <div class="alert">
+        ⚠️ <strong>Cross-origin limitation (from DEV-249191):</strong> Click events inside the WebFlow iFrame do not propagate to our codebase. <code>offer_shelf_click</code> fires on the resident tapping the shelf offer card — not on actions inside the iframe. In-iframe CTA attribution is a Phase 2 item.
+      </div>
+      <table>
+        <tr><th>Event Name</th><th>When It Fires</th><th>Required Properties</th></tr>
+        <tr>
+          <td><code>offer_shelf_impression</code></td>
+          <td>Shelf enters viewport (Intersection Observer, ≥50% visible)</td>
+          <td><code>surface=rcr</code>, <code>platform</code>, <code>placement</code>, <code>offer_id</code>, <code>impression_id</code> (dedupe), <code>property_id</code>, <code>enrollment_status</code>, <code>offer_count</code></td>
+        </tr>
+        <tr>
+          <td><code>offer_shelf_click</code></td>
+          <td>Resident taps a shelf offer card (not inside iframe)</td>
+          <td><code>surface=rcr</code>, <code>platform</code>, <code>offer_id</code>, <code>partner</code>, <code>property_id</code>, <code>enrollment_status</code></td>
+        </tr>
+        <tr>
+          <td><code>offer_shelf_conversion</code></td>
+          <td>Partner-defined conversion event (Phase 2 — requires iframe provider coordination)</td>
+          <td><code>surface=rcr</code>, <code>offer_id</code>, <code>conversion_type</code></td>
+        </tr>
+        <tr>
+          <td><code>offer_shelf_load_started</code></td>
+          <td>Shelf component mounts and begins eligibility check</td>
+          <td><code>surface</code>, <code>platform</code>, <code>property_id</code>, <code>enrollment_status</code></td>
+        </tr>
+        <tr>
+          <td><code>offer_shelf_load_failed</code></td>
+          <td>Eligibility check, flag eval, or CMS fetch fails</td>
+          <td><code>surface</code>, <code>platform</code>, <code>property_id</code>, <code>error_type</code> (enrollment_check_failed, flag_eval_timeout, cms_timeout, cms_empty), <code>error_code</code></td>
+        </tr>
+        <tr>
+          <td><code>offer_shelf_collapsed</code></td>
+          <td>Shelf rendered then collapsed due to kill switch activation</td>
+          <td><code>surface</code>, <code>platform</code>, <code>property_id</code>, <code>collapse_reason</code> (global_kill, surface_kill, client_excluded)</td>
+        </tr>
+        <tr>
+          <td><code>enrollment_cta_shown</code></td>
+          <td>Unenrolled resident sees enrollment CTA instead of shelf</td>
+          <td><code>surface</code>, <code>platform</code>, <code>property_id</code></td>
+        </tr>
+        <tr>
+          <td><code>kill_switch_activated</code></td>
+          <td>Operator activates any kill switch level</td>
+          <td><code>surface</code>, <code>kill_level</code> (client, surface, global), <code>activated_by</code>, <code>property_id</code>, <code>client_id</code></td>
+        </tr>
+      </table>
+      <pre>{
+  "event": "offer_shelf_impression",
+  "properties": {
+    "surface": "rcr",
+    "platform": "homebody_rxp",
+    "placement": "rcr_page_below_score",
+    "offer_id": "high-yield-savings-q1",
+    "impression_id": "imp_1742740800000",
+    "property_id": "meridian-lakewood-pmg",
+    "enrollment_status": "enrolled",
+    "offer_count": 3
+  }
+}</pre>
+      <pre>{
+  "event": "offer_shelf_load_failed",
+  "properties": {
+    "surface": "rcr",
+    "platform": "homebody_rxp",
+    "property_id": "meridian-lakewood-pmg",
+    "error_type": "cms_timeout",
+    "error_code": 504,
+    "enrollment_status": "enrolled"
+  }
+}</pre>
+    </div>
+  </div>
+
+  <!-- 7. APIs / Data Contracts -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title">APIs &amp; Data Contracts</div>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Contract</th><th>Pattern</th><th>Owner</th></tr>
+        <tr>
+          <td>WebFlow iFrame URL</td>
+          <td>iframe src points to WebFlow CMS endpoint managed by Growth Marketing. Same pattern as Payment Confirmation (DEV-271174).</td>
+          <td>DeAysia Douglas (Growth Marketing)</td>
+        </tr>
+        <tr>
+          <td>RCR Enrollment Check</td>
+          <td>Server-side API call before shelf render. If resident is not RCR-enrolled → fail-closed (no shelf).</td>
+          <td>Engineering (Keenan Ryder)</td>
+        </tr>
+        <tr>
+          <td>Feature Flag Evaluation</td>
+          <td>hb_rcr_ad_shelf_enabled + hb_rcr_ad_shelf_allowlist evaluated server-side. Same flag infrastructure as Phase 1.</td>
+          <td>Engineering (Keenan Ryder)</td>
+        </tr>
+        <tr>
+          <td>Homebody Your Way Check</td>
+          <td>Platform-level eligibility gate — pre-existing. No new build.</td>
+          <td>Engineering — existing platform</td>
+        </tr>
+        <tr>
+          <td>New Relic — RCR Dashboard</td>
+          <td>New dashboard (separate from Payment Confirmation). Metrics: render rate, p95 latency, impression volume, flow regression indicator.</td>
+          <td>Engineering (Keenan Ryder)</td>
+        </tr>
+      </table>
+      <div style="margin-top: 14px;">
+        <strong style="font-size: 12px; color: var(--gray-600); display: block; margin-bottom: 6px;">Feature Flag Keys</strong>
+        <table>
+          <tr><th>Flag</th><th>Purpose</th><th>Scope</th></tr>
+          <tr><td><code>hb_rcr_ad_shelf_enabled</code></td><td>Master switch — RCR ad shelf</td><td>Per-surface</td></tr>
+          <tr><td><code>hb_rcr_ad_shelf_allowlist</code></td><td>Property/PMC-level allowlist</td><td>Per-property</td></tr>
+          <tr><td><code>hb_ad_shelf_global_kill</code></td><td>Global kill switch — all surfaces</td><td>Global (pre-existing from Phase 1)</td></tr>
+        </table>
+      </div>
+      <div style="margin-top: 18px;">
+        <strong style="font-size: 12px; color: var(--gray-600); display: block; margin-bottom: 8px;">RCR Enrollment Check — JSON Contract</strong>
+        <p style="font-size: 13px; margin-bottom: 6px;"><code>GET /api/v1/residents/{resident_id}/rcr-enrollment</code></p>
+        <p style="font-size: 12px; color: var(--gray-600); margin-bottom: 6px;">Request headers: <code>Authorization</code> Bearer token, <code>X-Property-ID</code></p>
+        <p style="font-size: 12px; color: var(--gray-600); margin-bottom: 4px;">Success response <code>200</code>:</p>
+        <pre>{
+  "resident_id": "res_14b_meridian",
+  "property_id": "meridian-lakewood-pmg",
+  "rcr_enrolled": true,
+  "enrollment_date": "2025-09-15T00:00:00Z",
+  "reporting_bureaus": ["equifax", "experian", "transunion"],
+  "status": "active"
+}</pre>
+        <p style="font-size: 12px; color: var(--gray-600); margin-top: 8px; margin-bottom: 4px;">Error responses:</p>
+        <ul style="font-size: 12px; color: var(--gray-600);">
+          <li><code>401</code> Unauthorized (invalid/expired token)</li>
+          <li><code>403</code> Forbidden (resident not in caller's property scope)</li>
+          <li><code>404</code> Not Found (resident_id does not exist)</li>
+          <li><code>500</code> Internal Server Error</li>
+          <li>Rate limit: 100 req/min per property</li>
+        </ul>
+      </div>
+      <div style="margin-top: 18px;">
+        <strong style="font-size: 12px; color: var(--gray-600); display: block; margin-bottom: 8px;">Feature Flag Evaluation — JSON Contract</strong>
+        <p style="font-size: 13px; margin-bottom: 6px;"><code>GET /api/v1/flags/evaluate?surface=rcr&amp;property_id={property_id}</code></p>
+        <p style="font-size: 12px; color: var(--gray-600); margin-bottom: 4px;">Success response <code>200</code>:</p>
+        <pre>{
+  "surface": "rcr",
+  "property_id": "meridian-lakewood-pmg",
+  "flags": {
+    "hb_rcr_ad_shelf_enabled": true,
+    "hb_rcr_ad_shelf_allowlist": true,
+    "hb_ad_shelf_global_kill": false
+  },
+  "shelf_eligible": true,
+  "evaluated_at": "2026-04-01T14:30:00Z",
+  "cache_ttl_seconds": 300
+}</pre>
+        <p style="font-size: 12px; color: var(--gray-600); margin-top: 8px; margin-bottom: 4px;">Error responses:</p>
+        <ul style="font-size: 12px; color: var(--gray-600);">
+          <li><code>400</code> Bad Request (missing surface or property_id)</li>
+          <li><code>500</code> Internal Server Error (fail-closed: treat as shelf_eligible=false)</li>
+          <li>Rate limit: 200 req/min per property</li>
+        </ul>
+      </div>
+      <div style="margin-top: 18px;">
+        <strong style="font-size: 12px; color: var(--gray-600); display: block; margin-bottom: 8px;">WebFlow CMS Content — JSON Contract</strong>
+        <p style="font-size: 13px; margin-bottom: 6px;"><code>GET {webflow_cms_base_url}/rcr-shelf-content?property_id={property_id}</code></p>
+        <p style="font-size: 12px; color: var(--gray-600); margin-bottom: 4px;">Success response <code>200</code>:</p>
+        <pre>{
+  "offers": [
+    {
+      "offer_id": "high-yield-savings-q1",
+      "partner": "Marcus by Goldman Sachs",
+      "headline": "Earn 4.8% APY on your savings",
+      "body": "High-yield savings with no fees, no minimums.",
+      "cta_text": "Open account",
+      "cta_url": "https://marcus.gs.com/entrata-rcr",
+      "badge": "Sponsored",
+      "category": "savings",
+      "priority": 1
+    }
+  ],
+  "content_version": "2026-04-01-v3",
+  "expires_at": "2026-04-02T00:00:00Z"
+}</pre>
+        <p style="font-size: 12px; color: var(--gray-600); margin-top: 8px; margin-bottom: 4px;">Empty response (no offers available):</p>
+        <pre>{
+  "offers": [],
+  "content_version": "2026-04-01-v3",
+  "expires_at": "2026-04-02T00:00:00Z"
+}</pre>
+        <p style="font-size: 12px; color: var(--gray-600); margin-top: 8px;">Error: iframe returns HTTP error or timeout &gt; 3s → fail-closed, zero footprint.</p>
+      </div>
+      <div style="margin-top: 14px;">
+        <strong style="font-size: 12px; color: var(--gray-600); display: block; margin-bottom: 6px;">Error Codes Summary</strong>
+        <table>
+          <tr><th>Endpoint</th><th>400</th><th>401</th><th>403</th><th>404</th><th>422</th><th>429</th><th>500</th></tr>
+          <tr><td>Enrollment Check</td><td>N/A</td><td>Invalid token</td><td>Out of scope</td><td>Resident not found</td><td>N/A</td><td>Rate limited (100/min)</td><td>Server error</td></tr>
+          <tr><td>Flag Eval</td><td>Missing params</td><td>Invalid token</td><td>N/A</td><td>N/A</td><td>N/A</td><td>Rate limited (200/min)</td><td>Server error (fail-closed)</td></tr>
+          <tr><td>CMS Content</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>Timeout/error (fail-closed)</td></tr>
+        </table>
+      </div>
+      <div style="margin-top: 18px;">
+        <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 10px;">Database Schema &amp; Business Logic</strong>
+        <p style="font-size: 12px; color: var(--gray-600); margin-bottom: 8px;">Table: <code>homebody.rcr_enrollment</code></p>
+        <table>
+          <tr><th>Column</th><th>Type</th><th>Description</th></tr>
+          <tr><td><code>resident_id</code></td><td>VARCHAR(64) PK</td><td>Resident identifier</td></tr>
+          <tr><td><code>property_id</code></td><td>VARCHAR(64) FK</td><td>Property identifier</td></tr>
+          <tr><td><code>enrolled</code></td><td>BOOLEAN NOT NULL DEFAULT false</td><td>RCR enrollment status</td></tr>
+          <tr><td><code>enrollment_date</code></td><td>TIMESTAMP</td><td>Date resident enrolled</td></tr>
+          <tr><td><code>status</code></td><td>ENUM('active','suspended','cancelled') DEFAULT 'active'</td><td>Enrollment lifecycle</td></tr>
+          <tr><td><code>reporting_bureaus</code></td><td>JSON</td><td>Array of bureau names</td></tr>
+        </table>
+        <p style="font-size: 12px; color: var(--gray-600); margin-top: 12px; margin-bottom: 6px;">Pseudocode for eligibility:</p>
+        <pre>function isShelfEligible(resident_id, property_id):
+  enrollment = SELECT enrolled, status FROM homebody.rcr_enrollment 
+               WHERE resident_id = ? AND property_id = ?
+  
+  IF enrollment IS NULL OR enrollment.enrolled = false OR enrollment.status != 'active':
+    RETURN { eligible: false, reason: 'not_enrolled' }
+  
+  flags = evaluateFlags(surface='rcr', property_id=property_id)
+  
+  IF flags.hb_ad_shelf_global_kill = true:
+    RETURN { eligible: false, reason: 'global_kill' }
+  IF flags.hb_rcr_ad_shelf_enabled = false:
+    RETURN { eligible: false, reason: 'surface_disabled' }
+  IF property_id NOT IN flags.hb_rcr_ad_shelf_allowlist:
+    RETURN { eligible: false, reason: 'property_not_allowlisted' }
+  
+  your_way = SELECT homebody_your_way FROM homebody.client_config WHERE property_id = ?
+  IF your_way = true:
+    RETURN { eligible: false, reason: 'your_way_exclusion' }
+  
+  RETURN { eligible: true }</pre>
+        <p style="font-size: 12px; color: var(--gray-600); margin-top: 8px;">Default behavior: If any check fails, returns error, or times out → <code>eligible: false</code>. Fail-closed.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Dependencies -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title">Dependencies</div>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Dependency</th><th>Status</th><th>Notes</th></tr>
+        <tr><td>Universal Shelf component (DEV-271174)</td><td><span class="chip chip-pass">Live</span></td><td>Reference implementation — reuse directly</td></tr>
+        <tr><td>WebFlow CMS integration</td><td><span class="chip chip-pass">Ready</span></td><td>Same CMS used for Payment Confirmation. DeAysia manages content.</td></tr>
+        <tr><td>Feature flag infrastructure</td><td><span class="chip chip-pass">Live</span></td><td>Add RCR-specific keys. Reuse Phase 1 infrastructure.</td></tr>
+        <tr><td>RCR enrollment check API</td><td><span class="chip chip-warn">Confirm</span></td><td>Server-side enrollment verification needed before render</td></tr>
+        <tr><td>RCR traffic volume validated in Amplitude</td><td><span class="chip chip-warn">Confirm before build</span></td><td>Validate resident volume on RCR surface</td></tr>
+        <tr><td>New Relic RCR dashboard</td><td><span class="chip chip-warn">Build before go-live</span></td><td>New dedicated dashboard — separate from Payment Confirmation</td></tr>
+        <tr><td>Homebody Your Way exclusion</td><td><span class="chip chip-pass">Enforced</span></td><td>Pre-existing platform gate</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 9. Engineering Checklist -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div class="section-title">Engineering Checklist</div>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>#</th><th>Task</th><th>Done</th></tr>
+        <tr><td>1</td><td>Place Universal Shelf component on Rent Credit Reporting view/component in Homebody</td><td>☐</td></tr>
+        <tr><td>2</td><td>Wire WebFlow iFrame src to Growth Marketing CMS endpoint (same pattern as DEV-271174)</td><td>☐</td></tr>
+        <tr><td>3</td><td>Add feature flag keys: <code>hb_rcr_ad_shelf_enabled</code>, <code>hb_rcr_ad_shelf_allowlist</code></td><td>☐</td></tr>
+        <tr><td>4</td><td>Implement server-side RCR enrollment check — fail-closed if not enrolled</td><td>☐</td></tr>
+        <tr><td>5</td><td>Enforce Homebody Your Way hard exclusion (pre-existing gate — verify it fires for RCR page)</td><td>☐</td></tr>
+        <tr><td>6</td><td>Implement fail-closed behavior: shelf collapses to zero footprint on any error</td><td>☐</td></tr>
+        <tr><td>7</td><td>Async load shelf — zero latency impact on RCR page load</td><td>☐</td></tr>
+        <tr><td>8</td><td>Wire Amplitude events: <code>offer_shelf_impression</code> (Intersection Observer), <code>offer_shelf_click</code></td><td>☐</td></tr>
+        <tr><td>9</td><td>Add <code>surface=rcr</code> to all Amplitude event properties</td><td>☐</td></tr>
+        <tr><td>10</td><td>Create New Relic dashboard for RCR surface (separate from Payment Confirmation)</td><td>☐</td></tr>
+        <tr><td>11</td><td>Set up New Relic alerting: failed render rate &gt;1%, latency &gt;150ms, API p95 &gt;200ms</td><td>☐</td></tr>
+        <tr><td>12</td><td>Verify per-client kill switch removes <code>client_id</code> from allowlist with immediate effect</td><td>☐</td></tr>
+        <tr><td>13</td><td>Verify global kill switch (<code>hb_ad_shelf_global_kill</code>) kills RCR shelf alongside other surfaces</td><td>☐</td></tr>
+        <tr><td>14</td><td>Measure RCR flow completion before and after shelf placement — confirm no regression</td><td>☐</td></tr>
+        <tr><td>15</td><td>QA: test all acceptance criteria with Maggie Call before go-live</td><td>☐</td></tr>
+      </table>
+      <div style="margin-top: 18px;">
+        <strong style="font-size: 13px; color: var(--navy); display: block; margin-bottom: 10px;">Accessibility Requirements</strong>
+        <ul style="font-size: 13px;">
+          <li><strong>Shelf container:</strong> <code>role="complementary"</code>, <code>aria-label="Featured financial offers"</code></li>
+          <li><strong>Offer cards:</strong> <code>role="article"</code> within <code>role="feed"</code></li>
+          <li><strong>CTA buttons:</strong> Descriptive <code>aria-label</code> (e.g., "Open account with Marcus by Goldman Sachs")</li>
+          <li><strong>Tab order:</strong> Offer cards are focusable in DOM order. Tab cycles through CTAs.</li>
+          <li><strong>Focus management:</strong> When iframe modal opens, focus moves to modal. On close, focus returns to the CTA that triggered it.</li>
+          <li><strong>Color contrast:</strong> All text meets WCAG 2.1 AA (4.5:1 for body, 3:1 for large text). Shelf label text (#94a3b8 on white) should be verified — may need darkening.</li>
+          <li><strong>Screen reader:</strong> Offer count announced on shelf load ("3 financial offers available"). Kill switch states announced via <code>aria-live="polite"</code> region.</li>
+          <li><strong>Motion:</strong> Respect <code>prefers-reduced-motion</code> for any animations.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Scope -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div class="section-title">Scope</div>
+    </div>
+    <div class="section-body">
+      <div class="scope-grid">
+        <div class="scope-box in">
+          <div class="scope-box-title">✓ In Scope</div>
+          <ul>
+            <li>WebFlow iFrame on RCR page (Homebody RXP web + mobile)</li>
+            <li>Feature-flag allowlist (property/PMC-level)</li>
+            <li>Enrollment-aware targeting (RCR-enrolled only)</li>
+            <li>Homebody Your Way hard exclusion</li>
+            <li>Fail-closed behavior</li>
+            <li>Amplitude events (impression, click)</li>
+            <li>New Relic RCR dashboard + alerting</li>
+            <li>Per-client, per-surface, global kill switches</li>
+            <li>Audit trail for all stop/exclude actions</li>
+          </ul>
+        </div>
+        <div class="scope-box out">
+          <div class="scope-box-title">✗ Out of Scope</div>
+          <ul>
+            <li>Legal language gate (RCR is Homebody-native — already approved)</li>
+            <li>New platform build (reuse Phase 1)</li>
+            <li>Content strategy (Growth Marketing owns)</li>
+            <li>In-iframe CTA click attribution (cross-origin limitation — Phase 2)</li>
+            <li>Resident-level personalization</li>
+            <li>Full self-serve audience builder</li>
+            <li>Rev share program mechanics</li>
+            <li>Resident Portal or move-in/out surfaces</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. Vertical Deviation Matrix -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div class="section-title">Vertical Deviation Matrix</div>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Vertical</th><th>Required?</th><th>Type</th><th>Summary</th><th>Notes</th></tr>
+        <tr><td>Residential</td><td>Yes (primary)</td><td>Full support</td><td>Standard Homebody RCR residents. Primary target.</td><td>Default vertical. All acceptance criteria apply.</td></tr>
+        <tr><td>Commercial</td><td>No</td><td>Not applicable</td><td>Commercial properties do not have resident-facing RCR.</td><td>No RCR surface exists in commercial. Zero impact.</td></tr>
+        <tr><td>Affordable</td><td>Yes (conditional)</td><td>Partial — eligibility gate</td><td>Affordable housing residents with RCR active see the shelf if property is on allowlist.</td><td>HUD/LIHTC compliance: verify no regulatory restriction on financial offer display. Legal (Allen Li) to confirm.</td></tr>
+        <tr><td>Student</td><td>Yes (conditional)</td><td>Full support (if RCR active)</td><td>Student housing residents with RCR enrollment see the shelf.</td><td>Same eligibility logic as Residential. No student-specific deviation.</td></tr>
+        <tr><td>Military</td><td>Yes (conditional)</td><td>Partial — review required</td><td>Military housing residents with RCR.</td><td>MLA (Military Lending Act) review required before enabling. Legal (Allen Li) must confirm offer types are MLA-compliant. Do NOT enable without legal sign-off.</td></tr>
+        <tr><td>Senior</td><td>Yes (conditional)</td><td>Full support (if RCR active)</td><td>Senior housing residents with RCR enrollment.</td><td>Same eligibility logic as Residential. No senior-specific deviation.</td></tr>
+        <tr><td>HOA</td><td>No</td><td>Not applicable</td><td>HOA communities do not use Homebody RCR.</td><td>No RCR surface. Zero impact.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 13. Feature Essentials Summary -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <div class="section-title">Feature Essentials Summary</div>
+    </div>
+    <div class="section-body">
+      <div style="margin-bottom: 16px;">
+        <strong style="font-size: 13px; color: var(--navy);">Elevator Pitch</strong>
+        <p style="margin-top: 6px; font-size: 13px; color: var(--gray-600);">
+          Engineering builds an iFrame slot on the Rent Credit Reporting page in Homebody. Growth Marketing (DeAysia Douglas) inserts, removes, and changes ads at will via WebFlow CMS — no engineering dependency. Feature flags control who sees ads. Kill switches allow immediate shutdown. This is shelving expansion, not a new platform build.
+        </p>
+      </div>
+      <div style="margin-bottom: 16px;">
+        <strong style="font-size: 13px; color: var(--navy);">Key Stakeholders</strong>
+        <table>
+          <tr><th>Role</th><th>Name</th><th>Involvement</th></tr>
+          <tr><td>Product Owner</td><td>Jenny Mack</td><td>Owner</td></tr>
+          <tr><td>Engineering (EM)</td><td>Keenan Ryder</td><td>Assigned — DEV-273548</td></tr>
+          <tr><td>QA</td><td>Maggie Call</td><td>Assigned — DEV-273548</td></tr>
+          <tr><td>Growth Marketing</td><td>DeAysia Douglas</td><td>Content operations via WebFlow CMS</td></tr>
+          <tr><td>Legal</td><td>Allen Li</td><td>Confirm: no legal gate for RCR (Homebody-native)</td></tr>
+          <tr><td>CSM / AM</td><td>Andrea Alves</td><td>Client comms + complaint escalation</td></tr>
+        </table>
+      </div>
+      <div>
+        <strong style="font-size: 13px; color: var(--navy);">Reference Artifacts</strong>
+        <ul style="margin-top: 8px; font-size: 13px;">
+          <li>Initiative Description: <code>App_Shelving/Artifacts/Initiative_Description_Homebody_Ad_Shelves_RCR.md</code></li>
+          <li>Epic Description: <code>App_Shelving/Artifacts/Epic_Description_Homebody_RCR_Ad_Shelves.md</code></li>
+          <li>PRD: <code>App_Shelving/Artifacts/PRDs/PRD_Homebody_RCR_Ad_Shelves.md</code></li>
+          <li>FE Doc: <code>App_Shelving/Artifacts/Release_Artifacts/FE_Doc_Homebody_RCR_Ad_Shelves.md</code></li>
+          <li>IED: <code>App_Shelving/Artifacts/Release_Artifacts/IED_WebFlow_iFrame_RCR_Ad_Shelves_DEV-273548.md</code></li>
+          <li>Kill switch &amp; event tracking reference: DEV-249191</li>
+        </ul>
+      </div>
+      <div style="margin-top: 16px;">
+        <strong style="font-size: 13px; color: var(--navy);">Success Metrics</strong>
+        <ul style="margin-top: 8px; font-size: 13px; color: var(--gray-600);">
+          <li>VOSI baseline target: ≥500 impressions in first 30 days (pilot cohort)</li>
+          <li>Flow completion regression threshold: &lt;2% change from pre-launch baseline</li>
+          <li>Added latency: &lt;150ms (p95)</li>
+          <li>Failed render rate: &lt;1% (alerted)</li>
+          <li>Kill switch response: &lt;4 hours from complaint to client exclusion</li>
+          <li>Growth Marketing self-serve: 100% of content updates without engineering tickets</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  DEV-273548 · WebFlow iFrame Integration & Feature Flagging — RCR Ad Shelves · Entrata Homebody · R2 June 16, 2026 · CONFIDENTIAL — INTERNAL ONLY
+</div>
+
+</body>
+</html>
